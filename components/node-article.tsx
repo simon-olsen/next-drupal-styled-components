@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/format-date"
 export function NodeArticle({ node, ...props }) {
   return (
     <article {...props}>
-      <h1 className="mb-4 text-6xl font-black leading-tight">{node.title}</h1>
+      <h1>{node.title}</h1>
       <NodeMeta node={node} />
       {node.field_image?.uri && (
         <figure>
@@ -19,7 +19,7 @@ export function NodeArticle({ node, ...props }) {
             alt={node.field_image.resourceIdObjMeta.alt}
           />
           {node.field_image.resourceIdObjMeta.title && (
-            <figcaption className="py-2 text-sm text-center text-gray-600">
+            <figcaption>
               {node.field_image.resourceIdObjMeta.title}
             </figcaption>
           )}
@@ -28,7 +28,6 @@ export function NodeArticle({ node, ...props }) {
       {node.body?.processed && (
         <div
           dangerouslySetInnerHTML={{ __html: node.body?.processed }}
-          className="mt-6 font-serif text-xl leading-loose prose"
         />
       )}
     </article>
@@ -39,8 +38,8 @@ export function NodeArticleTeaser({ node, ...props }) {
   return (
     <article {...props}>
       <Link href={node.path.alias} passHref>
-        <a className="no-underline hover:text-blue-600">
-          <h2 className="mb-4 text-4xl font-bold">{node.title}</h2>
+        <a>
+          <h2>{node.title}</h2>
         </a>
       </Link>
       <NodeMeta node={node} />
@@ -56,7 +55,7 @@ export function NodeArticleTeaser({ node, ...props }) {
         </div>
       )}
       {node.body?.summary && (
-        <p className="mt-6 font-serif text-xl leading-loose">
+        <p>
           {node.body.summary}
         </p>
       )}
@@ -66,11 +65,11 @@ export function NodeArticleTeaser({ node, ...props }) {
 
 function NodeMeta({ node, ...props }) {
   return (
-    <div className="mb-4 text-gray-600" {...props}>
+    <div {...props}>
       {node.uid?.display_name ? (
         <span>
           Posted by{" "}
-          <span className="font-semibold">{node.uid?.display_name}</span>
+          <span>{node.uid?.display_name}</span>
         </span>
       ) : null}
       <span> - {formatDate(node.created)}</span>

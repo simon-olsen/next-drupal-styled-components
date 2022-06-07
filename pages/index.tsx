@@ -13,28 +13,28 @@ export default function IndexPage({ nodes }: IndexPageProps) {
   return (
     <Layout>
       <Head>
-        <title>Next.js for Drupal</title>
+        <title>Next.js and Styled Components for Drupal</title>
         <meta
           name="description"
-          content="A Next.js site powered by a Drupal backend."
+          content="A Next.js site powered by a Drupal backend with Styled Components for layout and styles."
         />
       </Head>
       <div>
-        <h1 className="mb-10 text-6xl font-black">Latest Articles.</h1>
+        <h1>Latest Articles.</h1>
 
         {nodes?.length ? (
           nodes.map((node) => (
             <div key={node.id}>
               <NodeArticleTeaser node={node} />
-              <hr className="my-20" />
+              <hr />
             </div>
           ))
         ) : (
-          <p className="py-4">No nodes found</p>
+          <p>No nodes found</p>
         )}
       </div>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps(

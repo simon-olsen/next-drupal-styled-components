@@ -14,15 +14,15 @@ export function PreviewAlert() {
   }
 
   return (
-    <div className="sticky top-0 left-0 z-50 w-full px-2 py-1 text-center text-white bg-black">
-      <p className="mb-0">
+    <div>
+      <p>
         This page is a preview.{" "}
         {/* eslint-disable @next/next/no-html-link-for-pages */}
-        <a href="/api/exit-preview" className="text-white underline">
+        <a href="/api/exit-preview">
           Click here
         </a>{" "}
         to exit preview mode.
       </p>
     </div>
-  )
+  );
 }

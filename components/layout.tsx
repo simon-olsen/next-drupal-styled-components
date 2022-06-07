@@ -6,18 +6,16 @@ export function Layout({ children }) {
   return (
     <>
       <PreviewAlert />
-      <div className="max-w-screen-md px-6 mx-auto">
+      <div>
         <header>
-          <div className="container flex items-center justify-between py-6 mx-auto">
+          <div>
             <Link href="/" passHref>
-              <a className="text-2xl font-semibold no-underline">
-                Next.js for Drupal
-              </a>
+              <a>Next.js for Drupal</a>
             </Link>
           </div>
         </header>
-        <main className="container py-10 mx-auto">{children}</main>
+        <main>{children}</main>
       </div>
     </>
-  )
+  );
 }
