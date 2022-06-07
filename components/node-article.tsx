@@ -1,9 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
+import { DrupalNode } from "next-drupal";
+import { formatDate } from "@/lib/format-date";
 
-import { formatDate } from "@/lib/format-date"
+interface NodePageProps {
+  node: DrupalNode;
+}
 
-export function NodeArticle({ node, ...props }) {
+export const NodeArticle: React.FC<NodePageProps> = ({ node, ...props }) => {
   return (
     <article {...props}>
       <h1>{node.title}</h1>
@@ -19,22 +23,21 @@ export function NodeArticle({ node, ...props }) {
             alt={node.field_image.resourceIdObjMeta.alt}
           />
           {node.field_image.resourceIdObjMeta.title && (
-            <figcaption>
-              {node.field_image.resourceIdObjMeta.title}
-            </figcaption>
+            <figcaption>{node.field_image.resourceIdObjMeta.title}</figcaption>
           )}
         </figure>
       )}
       {node.body?.processed && (
-        <div
-          dangerouslySetInnerHTML={{ __html: node.body?.processed }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: node.body?.processed }} />
       )}
     </article>
-  )
-}
+  );
+};
 
-export function NodeArticleTeaser({ node, ...props }) {
+export const NodeArticleTeaser: React.FC<NodePageProps> = ({
+  node,
+  ...props
+}) => {
   return (
     <article {...props}>
       <Link href={node.path.alias} passHref>
@@ -54,25 +57,20 @@ export function NodeArticleTeaser({ node, ...props }) {
           />
         </div>
       )}
-      {node.body?.summary && (
-        <p>
-          {node.body.summary}
-        </p>
-      )}
+      {node.body?.summary && <p>{node.body.summary}</p>}
     </article>
-  )
-}
+  );
+};
 
-function NodeMeta({ node, ...props }) {
+const NodeMeta: React.FC<NodePageProps> = ({ node, ...props }) => {
   return (
     <div {...props}>
       {node.uid?.display_name ? (
         <span>
-          Posted by{" "}
-          <span>{node.uid?.display_name}</span>
+          Posted by <span>{node.uid?.display_name}</span>
         </span>
       ) : null}
       <span> - {formatDate(node.created)}</span>
     </div>
-  )
-}
+  );
+};
