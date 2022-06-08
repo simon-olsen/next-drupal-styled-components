@@ -1,4 +1,5 @@
-import Link from "next/link"
+import React, { ReactNode } from "react";
+import Link from "next/link";
 import { PreviewAlert } from "@/components/preview-alert";
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
@@ -90,7 +91,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const Layout: React.FC = ({ children }) => {
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+export function Layout({ children }: LayoutProps) {
   return (
     <>
       <GlobalStyle />
@@ -99,7 +104,7 @@ export const Layout: React.FC = ({ children }) => {
         <header>
           <div>
             <Link href="/" passHref>
-              <a>Next.js for Drupal</a>
+              <a>Styled Components, Next.js and Drupal</a>
             </Link>
           </div>
         </header>
