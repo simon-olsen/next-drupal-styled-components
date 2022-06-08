@@ -50,6 +50,7 @@ export const NodeArticleTeaser: React.FC<NodePageProps> = ({
         <div>
           <Image
             src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${node.field_image.uri.url}`}
+            alt={`Supporting image for ${node.title}`}
             width={768}
             height={480}
             layout="responsive"
