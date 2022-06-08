@@ -1,17 +1,22 @@
-import Head from "next/head"
-import { GetStaticPropsResult } from "next"
-import { DrupalNode, getResourceCollectionFromContext } from "next-drupal"
+import type { ReactElement } from "react";
+import Head from "next/head";
+import { GetStaticProps, GetStaticPropsResult } from "next";
+import { DrupalNode, getResourceCollectionFromContext } from "next-drupal";
 
-import { NodeArticleTeaser } from "@/components/node-article"
-import { Layout } from "@/components/layout"
+import { NodeArticleTeaser } from "@/components/node-article";
+import { Layout } from "@/components/layout";
 
 interface IndexPageProps {
-  nodes: DrupalNode[]
+  nodes: DrupalNode[];
 }
+
+IndexPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
 
 export default function IndexPage({ nodes }: IndexPageProps) {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Next.js and Styled Components for Drupal</title>
         <meta
@@ -33,13 +38,13 @@ export default function IndexPage({ nodes }: IndexPageProps) {
           <p>No nodes found</p>
         )}
       </div>
-    </Layout>
+    </>
   );
 }
 
-export async function getStaticProps(
+export const getStaticProps: GetStaticProps = async (
   context
-): Promise<GetStaticPropsResult<IndexPageProps>> {
+): Promise<GetStaticPropsResult<IndexPageProps>> => {
   const nodes = await getResourceCollectionFromContext<DrupalNode[]>(
     "node--article",
     context,
@@ -50,12 +55,12 @@ export async function getStaticProps(
         sort: "-created",
       },
     }
-  )
+  );
 
   return {
     props: {
       nodes,
     },
     revalidate: 10,
-  }
-}
+  };
+};
