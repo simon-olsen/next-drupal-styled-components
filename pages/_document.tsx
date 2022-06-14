@@ -40,9 +40,6 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          <link rel="stylesheet" href="/styles/normalize.css"></link>
-        </Head>
         <body>
           <Main />
           <NextScript />
