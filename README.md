@@ -9,7 +9,7 @@ Yes! Of course you want to start a Next.js site with Styled Components and a Dru
 
 ## How to use
 
-`npx create-next-app -e https://github.com/chapter-three/next-drupal-styled-components`
+`npx create-next-app -e https://github.com/simon-olsen/next-drupal-styled-components`
 
 ## Deploy to Vercel
 
